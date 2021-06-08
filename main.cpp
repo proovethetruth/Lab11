@@ -6,14 +6,14 @@
 
 
 int main() {
-	char* filename = (char*)malloc(sizeof(char) * 32);
-	if (filename == 0 || !scanf("%s", filename))
-	{
-		printf("\n Incorrect filename input");
-		return -1;
-	}
+	//char* filename = (char*)malloc(sizeof(char) * 10);
+	//if (filename == 0 || !scanf("%s", filename))
+	//{
+	//	printf("\n Incorrect filename input");
+	//	return -1;
+	//}
 
-	char** str = parser(filename);
+	/*char** str = parser(filename);
 
 	printf("\n Contents of .txt file:");
 	for (int i = 0; str[i] != NULL; i++) {
@@ -21,6 +21,23 @@ int main() {
 		for (int j = 0; is_ch(str[i][j]); j++) {
 			printf("%c", str[i][j]);
 		}
-	}
+	}*/
+	FILE* fp = fopen("test.txt", "r");
+	char* word = readWord(fp);
+
+	for (int i = 0; i < 10; i++)
+		printf("%c", word[i]);
+
+	word = readWord(fp);
+
+	for (int i = 0; i < 10; i++)
+		printf("%c", word[i]);
+
+	printf("... ");
+
+	word = readWord(fp);
+
+	for (int i = 0; i < 10; i++)
+		printf("%c", word[i]);
 	return 0;
 }
