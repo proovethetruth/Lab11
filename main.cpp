@@ -17,7 +17,6 @@ int main() {
 
 	vector_t str;
 	parse(&str, filename);
-
 	print_vector(&str);
 	destroy(&str);
 	return 0;

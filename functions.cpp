@@ -13,13 +13,12 @@ void init_vector(vector_t* v) {
 }
 
 void destroy(vector_t* v) {
-    for (int i = 0; i < (int)v->size - 1; i++)
+    for (int i = 0; i < (int)v->size; i++)
     {
         if (v->arr[i] != NULL)
             free(v->arr[i]);
     }
     v->size = 0;
-    free(v->arr);
 }
 
 void push_back(vector_t* str, char* word) {
@@ -66,7 +65,7 @@ void parse(vector_t* str, char* filename) {
     char* word;
     while ((word = readWord(fp)) != NULL)
         push_back(str, word);
-    //quicksort(str->arr, str->size);
+    quicksort(str->arr, str->size);
 }
 
 char* readWord(FILE* fp) {
@@ -104,23 +103,19 @@ char* readWord(FILE* fp) {
     return word;
 }
 
-void quicksort(char** str, int high) {
+void quicksort(char** arr, unsigned int length) {
     unsigned int i, piv = 0;
-    (int)high;
-    if (high <= 1)
+    if (length <= 1)
         return;
 
-    for (i = 0; i < high; i++) {
-        // if curr str < pivot str, move curr into lower array and  lower++(pvt)
-        if (strcmp(str[i], str[high - 1]) < 0) 	//use string in last index as pivot
-            swap(str + i, str + piv++);
+    for (i = 0; i < length; i++) {
+        if (strcmp(arr[i], arr[length - 1]) < 0)
+            swap(arr + i, arr + piv++);
     }
-    //move pivot to "middle"
-    swap(str + piv, str + high - 1);
+    swap(arr + piv, arr + length - 1);
 
-    //recursively sort upper and lower
-    quicksort(str, piv++);			//set length to current pvt and increase for next call
-    quicksort(str + piv, high - piv);
+    quicksort(arr, piv++);
+    quicksort(arr + piv, length - piv);
 }
 
 void swap(char** a, char** b) {

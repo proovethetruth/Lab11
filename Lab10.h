@@ -17,7 +17,7 @@ void print_vector(vector_t* str);
 void parse(vector_t* str, char* filename);
 char* readWord(FILE* fp);
 
-void quicksort(char** str, int high);
+void quicksort(char** arr, unsigned int length);
 void swap(char** a, char** b);
 
 int is_ch(char ch);
