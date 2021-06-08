@@ -23,20 +23,18 @@ void destroy(vector_t* v) {
 
 
 
-vector_t* parser(char* filename) {
+void parser(vector_t* str, char* filename) {
     FILE* fp;
     if (!(fp = fopen(filename, "r")))
-        return NULL;
+        return;
 
-    vector_t str;
-    init_vector(&str);
+    init_vector(str);
 
     char* word;
     while ((word = readWord(fp)) != NULL)
-        push_back(&str, word);
+        push_back(str, word);
 
-    quicksort(str.arr, str.size);
-    return &str;
+    quicksort(str->arr, str->size);
 }
 
 void push_back(vector_t* str, char* word) {

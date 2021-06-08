@@ -15,9 +15,9 @@ int main() {
 		return -1;
 	}
 
-	vector_t* str;
-	str = parser(filename);
-	for (int i = 0; i < str->size; i++)
-		printf("\n %d. %s", i + 1, str->arr[i]);
+	vector_t str;
+	parser(&str, filename);
+	for (int i = 0; i < str.size; i++)
+		printf("\n %d. %s", i + 1, str.arr[i]);
 	return 0;
 }
