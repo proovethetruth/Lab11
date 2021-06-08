@@ -29,6 +29,7 @@ int main() {
 	{
 		for (int i = 0; word[i] != '\0'; i++)
 			printf("%c", word[i]);
+		printf(" ");
 	}		
 	//word = readWord(fp);
 
