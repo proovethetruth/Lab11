@@ -74,17 +74,19 @@
 
 char* readWord(FILE* fp) {
     char ch = fgetc(fp);
-    while (!is_ch(ch))
+
+    while (!is_ch(ch))                                  // carefully
     {
         ch = fgetc(fp);
+        if (ch == EOF || !ch)
+            return NULL;
     }
-
 
     int size = 1;
     while (is_ch(ch))
     {
         if ((ch = fgetc(fp)) == EOF || !ch)
-            break;
+            break;     
         size++;
     }
     fseek(fp, -(size * (int)sizeof(char)), 1);
@@ -95,8 +97,9 @@ char* readWord(FILE* fp) {
         printf("\n Allocation error.");
         return NULL;
     }
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size - 1; i++)
         word[i] = fgetc(fp);
+    word[size] = '\0';
 
     return word;
 }

@@ -23,21 +23,23 @@ int main() {
 		}
 	}*/
 	FILE* fp = fopen("test.txt", "r");
-	char* word = readWord(fp);
+	char* word;
 
-	for (int i = 0; i < 10; i++)
-		printf("%c", word[i]);
+	while ((word = readWord(fp)) != NULL)
+	{
+		for (int i = 0; word[i] != '\0'; i++)
+			printf("%c", word[i]);
+	}		
+	//word = readWord(fp);
 
-	word = readWord(fp);
+	//for (int i = 0; i < 10; i++)
+	//	printf("%c", word[i]);
 
-	for (int i = 0; i < 10; i++)
-		printf("%c", word[i]);
+	//printf("... ");
 
-	printf("... ");
+	//word = readWord(fp);
 
-	word = readWord(fp);
-
-	for (int i = 0; i < 10; i++)
-		printf("%c", word[i]);
+	//for (int i = 0; i < 10; i++)
+	//	printf("%c", word[i]);
 	return 0;
 }
