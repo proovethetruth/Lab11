@@ -2,8 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "Lab10.h"
-#include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 void init_vector(vector_t* v) {
@@ -38,11 +37,11 @@ void push_back(vector_t* str, char* word) {
         }
         str->arr = tmp;
     }
-    /*for (int i = 0; i < (int)str->size; i++)
-    {
-        if (strcmp(str->arr[i], word) == 0)
-            return;
-    }*/
+    //for (int i = 0; i < (int)str->size; i++)
+    //{
+    //    if (strcmp(str->arr[i], word) == 0)
+    //        return;
+    //}
     str->arr[str->size] = word;
     str->size++;
 }
@@ -55,16 +54,17 @@ void print_vector(vector_t* str)
         printf("\n %d. %s", i + 1, str->arr[i]);
 }
 
-void parse(vector_t* str, char* filename) {
+int parse(vector_t* str, char* filename) {
     FILE* fp;
     if (!(fp = fopen(filename, "r")))
-        return;
+        return 0;
 
     init_vector(str);
 
     char* word;
     while ((word = readWord(fp)) != NULL)
         push_back(str, word);
+    return 1;
 }
 
 char* readWord(FILE* fp) {
@@ -119,7 +119,10 @@ void get_most_common(char** arr, size_t size)
         }
         count = 0;
     }
-    printf("\n Most repeated word is: \"%s\" (seen %d times)", arr[index], maxCount);
+    if (maxCount > 0)
+        printf("\n Most repeated word is: \"%s\" (seen %d times)", arr[index], maxCount);
+    else
+        printf(" File is empty");
 }
 
 void quicksort(char** arr, unsigned int length) {

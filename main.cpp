@@ -1,7 +1,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
+
 #include "Lab10.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -14,9 +14,10 @@ int main() {
 		printf("\n Incorrect filename input");
 		return -1;
 	}
-
 	vector_t str;
-	parse(&str, filename);
+	if (!parse(&str, filename))
+		return -1;
+
 	quicksort(str.arr, str.size);
 	print_vector(&str);
 
