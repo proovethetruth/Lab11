@@ -17,7 +17,11 @@ int main() {
 
 	vector_t str;
 	parse(&str, filename);
+	quicksort(str.arr, str.size);
 	print_vector(&str);
+
+	printf("\n");
+	get_most_common(str.arr, str.size);
 	destroy(&str);
 	return 0;
 }

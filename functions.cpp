@@ -38,11 +38,11 @@ void push_back(vector_t* str, char* word) {
         }
         str->arr = tmp;
     }
-    for (int i = 0; i < (int)str->size; i++)
+    /*for (int i = 0; i < (int)str->size; i++)
     {
         if (strcmp(str->arr[i], word) == 0)
             return;
-    }
+    }*/
     str->arr[str->size] = word;
     str->size++;
 }
@@ -65,7 +65,6 @@ void parse(vector_t* str, char* filename) {
     char* word;
     while ((word = readWord(fp)) != NULL)
         push_back(str, word);
-    quicksort(str->arr, str->size);
 }
 
 char* readWord(FILE* fp) {
@@ -101,6 +100,26 @@ char* readWord(FILE* fp) {
     word[size] = '\0';
 
     return word;
+}
+
+void get_most_common(char** arr, size_t size)
+{
+    int count = 0, maxCount = 0, index = 0;
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            if (strcmp(arr[i], arr[j]) == 0)
+                count++;
+        }
+        if (count > maxCount)
+        {
+            maxCount = count;
+            index = i;
+        }
+        count = 0;
+    }
+    printf("\n Most repeated word is: \"%s\" (seen %d times)", arr[index], maxCount);
 }
 
 void quicksort(char** arr, unsigned int length) {

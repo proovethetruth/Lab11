@@ -17,6 +17,7 @@ void print_vector(vector_t* str);
 void parse(vector_t* str, char* filename);
 char* readWord(FILE* fp);
 
+void get_most_common(char** arr, size_t size);
 void quicksort(char** arr, unsigned int length);
 void swap(char** a, char** b);
 
